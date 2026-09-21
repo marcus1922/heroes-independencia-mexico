@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Presentación escolar ABP sobre 14 protagonistas de la Independencia de México, con análisis crítico y referencias APA 7." />
+  <title>Entre la insurgencia y la nación | Héroes de la Independencia</title>
+  <style>
+    :root{
+      --paper:#f2ead7;--paper-2:#e7dcc2;--ink:#132b3a;--muted:#5a625f;
+      --seal:#9f2d2f;--olive:#536348;--gold:#b58a3a;--white:#fffdf6;
+      --shadow:0 28px 80px rgba(20,31,35,.28);--ease:cubic-bezier(.22,.78,.24,1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;overflow:hidden;background:#111c21;color:var(--ink)}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,a{font:inherit}
+    a{color:inherit}
+    .deck{height:100%;position:relative;isolation:isolate;background:
+      radial-gradient(circle at 12% 18%,rgba(181,138,58,.16),transparent 28%),
+      linear-gradient(135deg,#0b1c25,#182d35 48%,#0b191f)}
+    .deck::before{content:"";position:absolute;inset:0;opacity:.08;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
+    .slide{position:absolute;inset:clamp(10px,2.2vw,30px);display:grid;grid-template-rows:auto 1fr auto;
+      padding:clamp(24px,4.4vw,72px);background:
+      linear-gradient(90deg,transparent 0 95%,rgba(159,45,47,.06) 95%),
+      repeating-linear-gradient(0deg,rgba(19,43,58,.022) 0 1px,transparent 1px 9px),var(--paper);
+      border:1px solid rgba(242,234,215,.35);box-shadow:var(--shadow);overflow:hidden;
+      opacity:0;visibility:hidden;transform:perspective(1800px) translateX(9%) rotateY(-4deg) scale(.965);
+      transform-origin:20% 50%;transition:opacity .35s ease,visibility .35s,transform 1s var(--ease),filter .8s ease;z-index:1;filter:blur(7px) saturate(.7)}
+    .slide::after{content:"";position:absolute;width:44vw;height:44vw;right:-24vw;bottom:-30vw;border:1px solid rgba(19,43,58,.12);border-radius:50%;box-shadow:0 0 0 14px rgba(181,138,58,.05),0 0 0 15px rgba(19,43,58,.08);pointer-events:none}
+    .slide::before{content:"";position:absolute;inset:-20%;z-index:9;pointer-events:none;background:linear-gradient(105deg,transparent 30%,rgba(159,45,47,.18) 46%,rgba(181,138,58,.28) 49%,transparent 58%);transform:translateX(-100%) skewX(-8deg);opacity:0}
+    .slide.active{opacity:1;visibility:visible;transform:perspective(1800px) translateX(0) rotateY(0) scale(1);z-index:3;filter:none}
+    .slide.active::before{animation:pageSweep 1.1s var(--ease) both}
+    .slide.leaving{opacity:0;visibility:visible;transform:perspective(1800px) translateX(-12%) rotateY(5deg) scale(.94);z-index:2;filter:blur(8px) saturate(.55)}
+    .slide.active .reveal{animation:inkIn .72s var(--ease) both;animation-delay:calc(var(--i,0)*90ms + 130ms)}
+    @keyframes inkIn{from{opacity:0;transform:translateY(22px);clip-path:inset(0 0 100% 0)}to{opacity:1;transform:none;clip-path:inset(0)}}
+    @keyframes pageSweep{0%{transform:translateX(-110%) skewX(-8deg);opacity:0}18%{opacity:1}100%{transform:translateX(110%) skewX(-8deg);opacity:0}}
+    .topline,.footline{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:2}
+    .topline{padding-bottom:14px;border-bottom:1px solid rgba(19,43,58,.28);font-size:clamp(.67rem,.95vw,.88rem);letter-spacing:.08em}
+    .folio{font-weight:800;color:var(--seal)}
+    .section-name{color:var(--muted)}
+    .footline{padding-top:14px;border-top:1px solid rgba(19,43,58,.2);font-size:clamp(.63rem,.8vw,.76rem);color:var(--muted)}
+    .citation{max-width:76%;line-height:1.35}.citation a{text-decoration-thickness:1px;text-underline-offset:3px}
+    .canvas{display:grid;align-content:center;position:relative;z-index:2;min-height:0;padding:clamp(12px,2vh,24px) 0}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.035em;line-height:.96}
+    h1{font-size:clamp(3.1rem,8.7vw,8.8rem);max-width:12ch;margin-bottom:clamp(18px,3vh,34px)}
+    h2{font-size:clamp(2.2rem,5.5vw,5.8rem);max-width:16ch;margin-bottom:clamp(18px,3vh,32px)}
+    h3{font-size:clamp(1rem,1.45vw,1.38rem);line-height:1.2;margin-bottom:.55rem}
+    p,li{font-size:clamp(.84rem,1.2vw,1.16rem);line-height:1.5}
+    .lead{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.12rem,2vw,1.95rem);line-height:1.35;max-width:42ch;color:#29414c}
+    .kicker{color:var(--seal);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(.66rem,.9vw,.82rem);margin-bottom:1.1rem}
+    .hero-grid,.profile-grid,.split,.matrix{display:grid;gap:clamp(22px,4vw,70px);align-items:center}
+    .hero-grid{grid-template-columns:1.35fr .65fr}.profile-grid{grid-template-columns:.67fr 1.33fr}.split{grid-template-columns:repeat(2,1fr);align-items:start}
+    .seal{aspect-ratio:1;display:grid;place-items:center;border-radius:50%;border:3px double var(--seal);color:var(--seal);font-family:Georgia,serif;
+      font-size:clamp(3rem,8vw,7rem);font-weight:700;transform:rotate(-8deg);box-shadow:inset 0 0 0 10px rgba(159,45,47,.07);position:relative}
+    .seal::before{content:"1810 — 1821";position:absolute;top:14%;font:700 clamp(.55rem,1vw,.9rem)/1 system-ui;letter-spacing:.16em}
+    .seal::after{content:"ARCHIVO INSURGENTE";position:absolute;bottom:14%;font:700 clamp(.48rem,.8vw,.75rem)/1 system-ui;letter-spacing:.12em}
+    .portrait{width:min(28vw,340px);aspect-ratio:3/4;background:linear-gradient(155deg,var(--ink),#2f4a52);color:var(--paper);display:grid;place-items:center;position:relative;box-shadow:16px 16px 0 var(--gold);overflow:hidden;isolation:isolate}
+    .portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(8,22,28,.88));z-index:1}
+    .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:sepia(.14) contrast(1.06);transform:scale(1.08);transition:transform 8s var(--ease);z-index:0}
+    .slide.active .portrait img{transform:scale(1)}
+    .portrait span{font:700 clamp(3.8rem,9vw,8rem)/1 Georgia,serif;letter-spacing:-.08em;z-index:0}
+    .portrait small{position:absolute;left:16px;bottom:14px;right:16px;padding-top:10px;border-top:1px solid rgba(242,234,215,.5);font-size:.67rem;line-height:1.25;letter-spacing:.04em;z-index:2}.portrait small a{color:var(--paper)}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}.tag{border:1px solid currentColor;padding:5px 9px;font-size:clamp(.64rem,.8vw,.78rem);color:var(--olive)}
+    .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.fact{border-top:3px solid var(--seal);padding:10px 4px}.fact b{display:block;font-family:Georgia,serif;font-size:clamp(1.2rem,2.1vw,2rem)}.fact span{font-size:.74rem;color:var(--muted)}
+    .microfacts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}.microfact{border-top:2px solid var(--olive);padding-top:7px;font-size:clamp(.66rem,.82vw,.8rem);line-height:1.3;color:var(--muted)}.microfact b{display:block;color:var(--ink);font-size:.72rem;margin-bottom:3px}
+    .profile-grid h2{font-size:clamp(2rem,4.7vw,5rem);margin-bottom:14px}.profile-grid p{font-size:clamp(.75rem,1.02vw,1rem);line-height:1.42}.profile-grid .critical{margin-top:10px;padding-top:8px;padding-bottom:8px}
+    .detail-layout{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(20px,3vw,44px);align-items:center}.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.detail-card{padding:12px 14px;border-left:4px solid var(--seal);background:rgba(255,253,246,.46)}.detail-card:nth-child(2){border-color:var(--gold)}.detail-card:nth-child(3){border-color:var(--olive)}.detail-card:nth-child(4){border-color:var(--ink)}.detail-card h3{font-family:Georgia,serif;margin-bottom:5px}.detail-card p{font-size:clamp(.68rem,.84vw,.86rem);line-height:1.36;margin:0}.detail-photo{height:min(59vh,550px);position:relative;overflow:hidden;border:1px solid rgba(19,43,58,.3);box-shadow:12px 12px 0 var(--ink);background:linear-gradient(145deg,#18313b,#0b1c25);display:grid;place-items:center;padding:16px 14px 48px}.detail-photo img{width:100%;height:100%;object-fit:contain;object-position:center center;filter:grayscale(.12) sepia(.12);transform:scale(.97);transition:transform 9s var(--ease)}.slide.active .detail-photo img{transform:scale(1)}.detail-photo::after{content:"EXPEDIENTE AMPLIADO";position:absolute;left:12px;bottom:12px;background:var(--seal);color:white;padding:6px 9px;font-size:.62rem;letter-spacing:.1em}.image-credit{position:absolute;right:12px;bottom:14px;left:145px;text-align:right;color:rgba(255,255,255,.78);font-size:.56rem;line-height:1.2}.image-credit a{color:inherit}.detail-note{margin-top:10px;padding:10px 14px;border:1px solid rgba(159,45,47,.35);background:rgba(159,45,47,.07);font-size:clamp(.7rem,.88vw,.88rem);line-height:1.38}.detail-note b{color:var(--seal);font-family:Georgia,serif;font-size:1.02rem}
+    .slide.active .portrait{animation:portraitSettle 1s var(--ease) both 80ms}.slide.active:nth-of-type(even) .portrait{animation-name:portraitSettleAlt}
+    @keyframes portraitSettle{from{opacity:0;transform:translate(-30px,18px) rotate(-2.5deg);box-shadow:0 0 0 var(--gold)}to{opacity:1;transform:none;box-shadow:16px 16px 0 var(--gold)}}
+    @keyframes portraitSettleAlt{from{opacity:0;transform:translate(26px,-14px) rotate(2deg);box-shadow:0 0 0 var(--gold)}to{opacity:1;transform:none;box-shadow:16px 16px 0 var(--gold)}}
+    .critical{border-left:5px solid var(--gold);padding:12px 0 12px 18px;margin-top:18px;max-width:62ch}.critical b{color:var(--seal)}
+    .compact{margin:0;padding-left:1.15em}.compact li{margin:.45rem 0}
+    .timeline{display:grid;grid-template-columns:repeat(6,1fr);position:relative;gap:12px;margin-top:25px}.timeline::before{content:"";position:absolute;left:2%;right:2%;top:18px;height:2px;background:var(--ink)}
+    .event{position:relative;padding-top:38px}.event::before{content:"";position:absolute;top:10px;width:16px;height:16px;border-radius:50%;background:var(--seal);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--seal)}.event b{font-family:Georgia,serif;font-size:clamp(1rem,1.7vw,1.55rem)}.event p{font-size:clamp(.7rem,.9vw,.86rem);line-height:1.35;margin-top:6px}
+    .question{font:italic clamp(1.35rem,2.7vw,2.6rem)/1.28 Georgia,serif;color:var(--seal);max-width:33ch}
+    .matrix{grid-template-columns:repeat(4,1fr);align-items:stretch}.column{border-top:6px solid var(--ink);padding:14px;background:rgba(255,253,246,.32)}.column:nth-child(2){border-color:var(--seal)}.column:nth-child(3){border-color:var(--olive)}.column:nth-child(4){border-color:var(--gold)}.column p{font-size:clamp(.72rem,.9vw,.9rem)}
+    .ref-list{columns:2;column-gap:42px;margin:0;padding:0;list-style:none}.ref-list li{break-inside:avoid;font-size:clamp(.62rem,.78vw,.78rem);line-height:1.38;margin:0 0 .78rem;padding-left:1.4em;text-indent:-1.4em}.ref-list a{word-break:break-word;text-decoration-thickness:1px;text-underline-offset:2px}
+    .checklist{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.check{padding:16px;border:1px solid rgba(19,43,58,.28);background:rgba(255,253,246,.32)}.check b{display:block;color:var(--seal);font-family:Georgia,serif;font-size:1.1rem;margin-bottom:5px}.check p{font-size:clamp(.72rem,.9vw,.88rem);margin:0}
+    .controls{position:fixed;z-index:20;left:50%;bottom:clamp(16px,3vw,34px);transform:translateX(-50%);display:flex;gap:7px;padding:7px;background:rgba(7,20,27,.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.16);border-radius:999px;box-shadow:0 12px 40px rgba(0,0,0,.32)}
+    .controls button{width:42px;height:42px;border:0;border-radius:50%;background:transparent;color:white;cursor:pointer;font-size:1.1rem}.controls button:hover,.controls button:focus-visible{background:var(--seal);outline:2px solid white;outline-offset:2px}.count{min-width:68px;display:grid;place-items:center;color:#fff;font-size:.76rem;font-variant-numeric:tabular-nums}
+    .progress{position:fixed;top:0;left:0;height:4px;background:var(--seal);z-index:30;transition:width .55s var(--ease)}
+    .help{position:fixed;right:24px;bottom:25px;color:rgba(255,255,255,.65);z-index:20;font-size:.7rem}
+    .cover-mark{position:absolute;right:2%;top:7%;font:700 clamp(8rem,22vw,22rem)/1 Georgia,serif;color:rgba(19,43,58,.045);pointer-events:none}
+    @media(max-width:760px){.slide{inset:6px;padding:22px 20px 70px}.hero-grid,.profile-grid,.split,.detail-layout{grid-template-columns:1fr}.profile-grid{grid-template-columns:.32fr .68fr;gap:18px}.portrait{width:100%;box-shadow:8px 8px 0 var(--gold)}.portrait small{display:none}.detail-photo{display:none}.detail-grid{grid-template-columns:1fr 1fr}.facts{grid-template-columns:repeat(3,1fr)}.timeline{grid-template-columns:repeat(3,1fr)}.timeline::before{display:none}.event{padding-top:10px;border-top:2px solid var(--ink)}.event::before{display:none}.matrix{grid-template-columns:repeat(2,1fr)}.ref-list{columns:1}.checklist{grid-template-columns:1fr 1fr}.help{display:none}h1{font-size:clamp(2.6rem,13vw,5rem)}h2{font-size:clamp(2rem,9vw,4rem)}}
+    @media(max-height:650px){.slide{padding-top:22px;padding-bottom:62px}p,li{font-size:.78rem}.critical{margin-top:8px;padding-top:7px;padding-bottom:7px}.facts{margin:8px 0}.topline{padding-bottom:7px}.footline{padding-top:7px}.canvas{padding:8px 0}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.slide{transition:opacity .12s linear;transform:none!important}.slide.active .reveal{animation:none}.progress{transition:none}}
+    @media print{html,body{overflow:visible;background:white}.deck{height:auto;background:white}.slide{position:relative;inset:auto;width:100%;height:100vh;opacity:1;visibility:visible;transform:none;break-after:page;box-shadow:none}.controls,.progress,.help{display:none}}
+  </style>
+</head>
+<body>
+<main class="deck" aria-label="Presentación: Héroes de la Independencia de México">
+  <div class="progress" id="progress"></div>
+
+  <section class="slide active" data-section="Portada">
+    <header class="topline"><span class="section-name">Proyecto ABP · Historia de México</span><span class="folio">EXP. 1810/21</span></header>
+    <div class="canvas hero-grid">
+      <div><p class="kicker reveal" style="--i:0">Nombre del proyecto</p><h1 class="reveal" style="--i:1">Entre la insurgencia y la nación</h1><p class="lead reveal" style="--i:2">Catorce protagonistas, un país en disputa y las contradicciones que la historia oficial suele borrar.</p><p class="reveal" style="--i:3"><b>Estudiante:</b> Marcus Alexis Vazquez Zavala &nbsp; <b>Grupo:</b> 5DPGM<br><b>Docente:</b> Carlos Urbina Hernandez &nbsp; <b>Fecha:</b> 20/09/26</p></div>
+      <div class="seal reveal" style="--i:2" aria-hidden="true">MX</div><div class="cover-mark">I</div>
+    </div>
+    <footer class="footline"><span>Bachillerato · Aprendizaje Basado en Proyectos</span><span>Usa ← → o desliza</span></footer>
+  </section>
+
+  <section class="slide" data-section="Índice">
+    <header class="topline"><span class="section-name">Ruta de investigación</span><span class="folio">ÍNDICE</span></header>
+    <div class="canvas split"><div><p class="kicker reveal" style="--i:0">Estructura</p><h2 class="reveal" style="--i:1">Del mito al problema histórico</h2><p class="lead reveal" style="--i:2">No preguntamos solamente “¿quién fue?”, sino “¿qué defendió, para quién y con qué límites?”.</p></div><ol class="compact reveal" style="--i:2"><li>Introducción y contexto</li><li>Objetivos y pregunta guía</li><li>Las cuatro etapas de la guerra</li><li>Vida, obra y contradicciones de 14 figuras</li><li>Comparación de proyectos políticos</li><li>Producto ABP y debate</li><li>Conclusión y referencias APA 7</li></ol></div>
+    <footer class="footline"><span>Producto: presentación multimedia + debate con evidencia</span><span>02</span></footer>
+  </section>
+
+  <section class="slide" data-section="Introducción">
+    <header class="topline"><span class="section-name">Introducción</span><span class="folio">PROBLEMA</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">Nueva España, 1808–1821</p><h2 class="reveal" style="--i:1">La Independencia no fue una sola idea</h2><div class="split reveal" style="--i:2"><p class="lead">Fue guerra civil, revolución social, crisis monárquica y negociación política. En ella convivieron demandas de igualdad con jerarquías heredadas; movilización popular con dirigencias criollas; república, monarquía y autonomismo.</p><div><ul class="compact"><li><b>Crisis política:</b> la invasión napoleónica de España abrió una disputa sobre quién poseía la soberanía.</li><li><b>Desigualdad:</b> corporaciones, castas, tributos y acceso desigual a cargos estructuraban el orden colonial.</li><li><b>Guerra prolongada:</b> once años transformaron objetivos, liderazgos y alianzas.</li></ul><p class="critical"><b>Clave crítica:</b> “independencia” no significó lo mismo en 1810, 1813 y 1821.</p></div></div></div>
+    <footer class="footline"><span class="citation">Síntesis basada en INEHRM (s. f.) y UNAM-CCH (s. f.).</span><span>03</span></footer>
+  </section>
+
+  <section class="slide" data-section="Objetivos">
+    <header class="topline"><span class="section-name">Aprendizaje Basado en Proyectos</span><span class="folio">OBJETIVOS</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">Pregunta guía</p><h2 class="reveal question" style="--i:1">¿La Independencia transformó el orden social o principalmente cambió quién gobernaba?</h2><div class="checklist reveal" style="--i:2"><div class="check"><b>Analizar</b><p>Relacionar biografía, contexto y decisiones políticas.</p></div><div class="check"><b>Contrastar</b><p>Distinguir memoria patriótica, evidencia y debate historiográfico.</p></div><div class="check"><b>Argumentar</b><p>Sostener una postura con fuentes confiables y citas.</p></div><div class="check"><b>Visibilizar</b><p>Reconocer redes, mujeres, combatientes y actores colectivos.</p></div><div class="check"><b>Crear</b><p>Comunicar hallazgos con recursos multimedia.</p></div><div class="check"><b>Debatir</b><p>Escuchar, refutar y reformular con respeto.</p></div></div></div>
+    <footer class="footline"><span>Evaluación: rigor histórico + pensamiento crítico + comunicación</span><span>04</span></footer>
+  </section>
+
+  <section class="slide" data-section="Cronología">
+    <header class="topline"><span class="section-name">Cronología esencial</span><span class="folio">1808—1821</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">Cuatro etapas, múltiples proyectos</p><h2 class="reveal" style="--i:1">La guerra cambia de forma</h2><div class="timeline reveal" style="--i:2"><div class="event"><b>1808</b><p>Crisis de la monarquía española.</p></div><div class="event"><b>1810</b><p>Insurrección masiva encabezada por Hidalgo.</p></div><div class="event"><b>1811</b><p>Caen los primeros jefes; Rayón reorganiza.</p></div><div class="event"><b>1813</b><p>Morelos convoca el Congreso de Anáhuac.</p></div><div class="event"><b>1815–20</b><p>Resistencia regional y guerra de guerrillas.</p></div><div class="event"><b>1821</b><p>Plan de Iguala y Ejército Trigarante.</p></div></div><p class="critical reveal" style="--i:3"><b>Lectura:</b> la consumación no fue el desenlace automático de 1810; surgió de una alianza nueva entre insurgentes persistentes y antiguos realistas.</p></div>
+    <footer class="footline"><span class="citation">INEHRM (s. f.); Portal Académico CCH-UNAM (s. f.).</span><span>05</span></footer>
+  </section>
+
+  <section class="slide" data-section="Héroes" data-person="Miguel Hidalgo y Costilla" data-initials="MH" data-years="1753–1811" data-role="Iniciador · sacerdote · dirigente popular" data-tags="abolición de la esclavitud|movilización masiva|crisis de mando" data-facts="Origen|Criollo del Bajío|Punto decisivo|Guadalajara, 1810|Legado|Ruptura social" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Miguel%20Hidalgo%20retrato.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Miguel_Hidalgo_retrato.png" data-credit="Retrato póstumo, s. XIX · dominio público" data-source="INEHRM, Hidalgo constituyente (s. f.)." data-url="https://inehrm.gob.mx/es/inehrm/Hidalgo_Constituyente">
+    <div class="profile-data" hidden><p>El 16 de septiembre de 1810 convirtió una conspiración descubierta en levantamiento abierto. Su fuerza reunió a campesinos, mineros, indígenas, castas y criollos; en Guadalajara decretó la abolición de la esclavitud, tributos y otras cargas.</p><p><b>Contradicción:</b> abrió una ruptura social radical, pero el ejército multitudinario fue difícil de controlar. La violencia insurgente y su retirada tras Monte de las Cruces muestran los límites de liderazgo y estrategia.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="José María Morelos y Pavón" data-initials="JM" data-years="1765–1815" data-role="Organizador · legislador · estratega" data-tags="Sentimientos de la Nación|Congreso de Anáhuac|abolición de castas" data-facts="Origen|Michoacán|Punto decisivo|Chilpancingo, 1813|Legado|Proyecto constitucional" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Retrato%20del%20excelent%C3%ADsimo%20se%C3%B1or%20don%20Jos%C3%A9%20Mar%C3%ADa%20Morelos.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Retrato_del_excelent%C3%ADsimo_se%C3%B1or_don_Jos%C3%A9_Mar%C3%ADa_Morelos.png" data-credit="Pintor mixteco anónimo, 1812 · dominio público" data-source="INEHRM, Próceres: Morelos (s. f.)." data-url="https://www.inehrm.gob.mx/sitios/proceres/index.php?p=morelos">
+    <div class="profile-data" hidden><p>Profesionalizó la insurgencia en el sur y articuló un proyecto político. En <i>Sentimientos de la Nación</i> defendió independencia, soberanía popular, división de poderes y supresión de esclavitud, castas y tributos.</p><p><b>Contradicción:</b> buscó “moderar la opulencia y la indigencia”, pero mantuvo al catolicismo como religión única. Su autoridad militar también chocó con el Congreso que ayudó a crear.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Ignacio Allende" data-initials="IA" data-years="1769–1811" data-role="Militar criollo · conspirador · estratega" data-tags="Querétaro|disciplina militar|rivalidad de mando" data-facts="Origen|San Miguel el Grande|Punto decisivo|Monte de las Cruces|Tensión|Mando civil–militar" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Ignacio%20Allende%20by%20Jose%20Ines%20Tovilla.jpg?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Ignacio_Allende_by_Jose_Ines_Tovilla.jpg" data-credit="José Inés Tovilla, 1912 · retrato póstumo" data-source="INEHRM, Personajes de la Independencia (s. f.)." data-url="https://constitucion1917.gob.mx/es/inehrm/Personajes_de_la_Independencia">
+    <div class="profile-data" hidden><p>Capitán del ejército virreinal, participó en la conspiración de Querétaro y aportó experiencia castrense a la primera insurgencia. Combatió en Guanajuato, Monte de las Cruces y Puente de Calderón.</p><p><b>Contradicción:</b> quería una insurrección organizada y dirigida por militares; discrepó de Hidalgo por el mando, la indisciplina de la multitud y decisiones estratégicas. La causa común no eliminó la lucha interna por autoridad.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Juan Aldama" data-initials="JA" data-years="1774–1811" data-role="Enlace militar · conspirador" data-tags="San Miguel el Grande|aviso de Querétaro|primera campaña" data-facts="Profesión|Capitán de dragones|Función|Enlace conspirador|Final|Chihuahua, 1811" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Juan%20Aldama.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Juan_Aldama.png" data-credit="Retrato histórico · Wikimedia Commons" data-source="INEHRM, Catálogo Independencia nacional (2018)." data-url="https://www.inehrm.gob.mx/work/models/inehrm/Resource/4819/Catalogo_INEHRM.pdf">
+    <div class="profile-data" hidden><p>Oficial del regimiento de Dragones de la Reina y hermano de Ignacio Aldama. Al descubrirse la conspiración viajó a Dolores, participó en el inicio armado y acompañó la campaña hasta la captura en Acatita de Baján.</p><p><b>Contradicción:</b> su protagonismo suele diluirse bajo Hidalgo y Allende. Su caso permite preguntar por qué la memoria nacional privilegia caudillos individuales sobre redes de enlace y organización.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Josefa Ortiz Téllez-Girón" data-initials="JO" data-years="1768–1829" data-role="Conspiradora · enlace político" data-tags="Querétaro|red clandestina|agencia femenina" data-facts="Espacio de acción|Casa corregimental|Punto decisivo|Aviso de 1810|Lectura|Género y clase" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Josefa%20Ortiz%2C%20%C3%B3leo%20sobre%20tela.jpg?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Josefa_Ortiz,_óleo_sobre_tela.jpg" data-credit="Autor anónimo, 1807 · Museo Nacional de Historia" data-source="INEHRM, Catálogo Independencia nacional (2018)." data-url="https://www.inehrm.gob.mx/work/models/inehrm/Resource/4819/Catalogo_INEHRM.pdf">
+    <div class="profile-data" hidden><p>Desde la casa corregimental participó en la conspiración de Querétaro. Cuando el complot fue descubierto, logró enviar el aviso que precipitó el levantamiento de septiembre de 1810.</p><p><b>Contradicción:</b> la etiqueta “esposa del corregidor” reduce una decisión política propia. A la vez, su acceso a información y contactos dependió de una posición social privilegiada: género y clase operaron juntos, no por separado.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Leona Vicario" data-initials="LV" data-years="1789–1842" data-role="Financiadora · periodista · informante" data-tags="Los Guadalupes|prensa insurgente|recursos y espionaje" data-facts="Red|Los Guadalupes|Medio|Prensa insurgente|Costo|Fortuna confiscada" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Leona%20Vicario%20Mayor.PNG?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Leona_Vicario_Mayor.PNG" data-credit="Autor desconocido, s. XIX · dominio público" data-source="INEHRM, Leona Vicario, heroína insurgente (s. f.)." data-url="https://www.inehrm.gob.mx/es/inehrm/Independencia">
+    <div class="profile-data" hidden><p>Integró la red secreta Los Guadalupes: entregó información, armas y recursos; colaboró con <i>El Ilustrador Americano</i>. Fue recluida, perdió su fortuna, escapó y se incorporó a la insurgencia.</p><p><b>Contradicción:</b> su riqueza hizo posible financiar la rebelión, pero ella arriesgó precisamente ese privilegio. Después defendió en prensa que su acción no se explicaba por seguir a su esposo, sino por convicción propia.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Mariano Matamoros" data-initials="MM" data-years="1770–1814" data-role="Sacerdote · lugarteniente · organizador" data-tags="ejército del sur|toma de Oaxaca|disciplina" data-facts="Se incorpora|1811|Especialidad|Organización militar|Final|Valladolid, 1814" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Mariano%20Matamoros.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Mariano_Matamoros.png" data-credit="José Obregón, 1868 · dominio público" data-source="INEHRM, Cronología de Morelos (s. f.)." data-url="https://inehrm.gob.mx/es/inehrm/jose_maria_morelos_y_pavon_cronologia_1765-1815">
+    <div class="profile-data" hidden><p>Se unió a Morelos en 1811 y convirtió fuerzas locales en unidades más disciplinadas. Participó en Cuautla, Oaxaca y campañas del sur; fue considerado uno de los principales brazos militares de Morelos.</p><p><b>Contradicción:</b> como otros clérigos insurgentes, transformó autoridad religiosa en mando armado. Su eficacia militar muestra que la insurgencia no fue sólo espontaneidad popular: también construyó jerarquías y coerción.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Hermenegildo Galeana" data-initials="HG" data-years="1762–1814" data-role="Comandante regional · fuerza de campaña" data-tags="familia Galeana|Cuautla|conocimiento territorial" data-facts="Base|Costa del sur|Aporte|Hombres, armas y territorio|Campañas|Cuautla y Acapulco" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Hermenegildo%20Galeana.jpg?width=700" data-imgpage="https://commons.wikimedia.org/wiki/Category:Hermenegildo_Galeana" data-credit="Representación histórica · Wikimedia Commons" data-source="INEHRM, Catálogo Independencia nacional (2018)." data-url="https://www.inehrm.gob.mx/work/models/inehrm/Resource/4819/Catalogo_INEHRM.pdf">
+    <div class="profile-data" hidden><p>Propietario del sur, se unió a Morelos con hombres, armas y conocimiento del terreno. Fue decisivo en campañas como Cuautla, Oaxaca y Acapulco; su liderazgo conectó redes regionales con el ejército insurgente.</p><p><b>Contradicción:</b> su trayectoria recuerda que la rebelión necesitó recursos de propietarios locales. “Pueblo” y “élite” no formaron bloques puros: las alianzas cambiaron según región, parentesco e intereses.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Nicolás Bravo" data-initials="NB" data-years="1786–1854" data-role="Insurgente · político republicano" data-tags="sur insurgente|perdón de prisioneros|vicepresidencia" data-facts="Región|Actual Guerrero|Episodio|Perdón de prisioneros|Después|Vicepresidente" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Bravo.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Nicolas_Bravo.png" data-credit="José Inés Tovilla, 1920 · retrato póstumo" data-source="INEHRM, Nicolás Bravo: El héroe del perdón (2025)." data-url="https://inehrm.gob.mx/recursos/Libros/2025_nicolas_bravo_juventudes.pdf">
+    <div class="profile-data" hidden><p>Se integró con su familia a las fuerzas de Morelos. La tradición destaca que perdonó a prisioneros realistas tras conocer la ejecución de su padre. Después participó en la construcción del régimen republicano.</p><p><b>Contradicción:</b> el “héroe del perdón” también fue un actor de las disputas políticas posteriores: como vicepresidente rompió con Guadalupe Victoria en 1827. La virtud conmemorativa no resume toda una carrera de poder.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Guadalupe Victoria" data-initials="GV" data-years="1786–1843" data-role="Guerrillero · republicano · presidente" data-tags="resistencia en Veracruz|federalismo|primer presidente" data-facts="Nombre original|José Miguel Fernández|Base|Veracruz|Después|Presidente, 1824" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Guadalupe%20Victoria%20-%2002.jpg?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Guadalupe_Victoria_-_02.jpg" data-credit="Retrato del siglo XIX · Wikimedia Commons" data-source="INEHRM, Guadalupe Victoria (s. f.)." data-url="https://inehrm.gob.mx/recursos/Libros/Guadalupe_Victoria.pdf">
+    <div class="profile-data" hidden><p>José Miguel Fernández Félix adoptó un nombre político que unía el símbolo guadalupano con la aspiración de victoria. Resistió en Veracruz y, tras el Imperio, fue elegido primer presidente de la República federal.</p><p><b>Contradicción:</b> encarnó continuidad insurgente y legalidad republicana, pero gobernó un país quebrado por guerra, deuda y facciones. La independencia política no produjo automáticamente capacidad estatal.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Francisco Xavier Mina" data-initials="XM" data-years="1789–1817" data-role="Liberal español · expedicionario insurgente" data-tags="liberalismo transatlántico|expedición de 1817|antiabsolutismo" data-facts="Origen|Navarra|Expedición|Soto la Marina, 1817|Enemigo|Absolutismo" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Francisco%20Xavier%20Mina.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Francisco_Xavier_Mina.png" data-credit="Retrato histórico · dominio público" data-source="INEHRM, Catálogo Independencia nacional (2018)." data-url="https://www.inehrm.gob.mx/work/models/inehrm/Resource/4819/Catalogo_INEHRM.pdf">
+    <div class="profile-data" hidden><p>Navarro y opositor al absolutismo de Fernando VII, desembarcó en 1817 para apoyar a los insurgentes. Su expedición vinculó la lucha novohispana con redes liberales del Atlántico.</p><p><b>Contradicción:</b> no combatió “contra España” en sentido nacionalista simple, sino contra el absolutismo. Su presencia cuestiona el relato de una guerra nítida entre mexicanos y españoles.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Vicente Guerrero" data-initials="VG" data-years="1782–1831" data-role="Guerrillero · negociador · presidente" data-tags="resistencia del sur|pacto de 1821|abolición de la esclavitud" data-facts="Base|Sierra del sur|Pacto|Iguala, 1821|Después|Presidente, 1829" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Vicente%20Ram%C3%B3n%20Guerrero%20Salda%C3%B1a.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Vicente_Ram%C3%B3n_Guerrero_Salda%C3%B1a.png" data-credit="Anacleto Escutia, 1850 · retrato póstumo" data-source="INEHRM, Próceres: Vicente Guerrero (s. f.)." data-url="https://www.inehrm.gob.mx/sitios/proceres/index.php?p=vicente">
+    <div class="profile-data" hidden><p>Mantuvo la resistencia en el sur después de la derrota de los grandes ejércitos insurgentes. En 1821 negoció con Iturbide la unión que dio origen al Ejército Trigarante; como presidente decretó la abolición de la esclavitud en 1829.</p><p><b>Contradicción:</b> pactó con un antiguo perseguidor realista y aceptó una monarquía católica como vía inmediata a la independencia. La negociación preservó la meta política, pero moderó parte del programa social.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Agustín de Iturbide" data-initials="AI" data-years="1783–1824" data-role="Realista · trigarante · emperador" data-tags="contrainsurgencia|Plan de Iguala|Primer Imperio" data-facts="Antes de 1821|Jefe realista|Instrumento|Plan de Iguala|Después|Emperador, 1822" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/Agustin%20I%20of%20Mexico.jpg?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:Agustin_I_of_Mexico.jpg" data-credit="Primitivo Miranda, c. 1823 · dominio público" data-source="INEHRM, De imperio a república (2024)." data-url="https://www.inehrm.gob.mx/es/inehrm/De_imperio_a_republica">
+    <div class="profile-data" hidden><p>Combatió a la insurgencia durante años. En 1821 formuló el Plan de Iguala, pactó con Guerrero y dirigió al Ejército Trigarante que entró en la capital. En 1822 fue proclamado emperador.</p><p><b>Contradicción:</b> consumador de la Independencia y antiguo contrainsurgente; conciliador de facciones y gobernante que disolvió el Congreso. Su figura obliga a separar el logro de 1821 de la legitimidad de su proyecto monárquico.</p></div>
+  </section>
+  <section class="slide" data-section="Héroes" data-person="Ignacio López Rayón" data-initials="LR" data-years="1773–1832" data-role="Jurista · organizador · ideólogo" data-tags="Junta de Zitácuaro|Elementos constitucionales|soberanía" data-facts="Formación|Abogado|Institución|Junta de Zitácuaro|Texto|Elementos, 1812" data-img="https://commons.wikimedia.org/wiki/Special:FilePath/General%20Ignacio%20L%C3%B3pez%20Ray%C3%B3n.png?width=700" data-imgpage="https://commons.wikimedia.org/wiki/File:General_Ignacio_L%C3%B3pez_Ray%C3%B3n.png" data-credit="Autor anónimo, s. XIX · dominio público" data-source="INEHRM, Documentos de la Independencia (s. f.)." data-url="https://constitucion1917.gob.mx/es/Constitucion1917/Independencia">
+    <div class="profile-data" hidden><p>Tras la caída de Hidalgo, encabezó la Suprema Junta Nacional Americana y redactó los <i>Elementos constitucionales</i> (1812), un intento de dar instituciones y lenguaje jurídico a la insurgencia.</p><p><b>Contradicción:</b> afirmó que la soberanía provenía del pueblo, pero todavía la depositó en Fernando VII. Su ambigüedad muestra el tránsito entre autonomismo monárquico e independencia absoluta.</p></div>
+  </section>
+
+  <section class="slide" data-section="Comparación">
+    <header class="topline"><span class="section-name">Síntesis comparativa</span><span class="folio">PROYECTOS</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">No hubo una sola insurgencia</p><h2 class="reveal" style="--i:1">Cuatro lógicas en tensión</h2><div class="matrix reveal" style="--i:2"><div class="column"><h3>Ruptura popular</h3><p><b>Hidalgo</b><br>Movilización masiva, abolición de cargas y quiebre inmediato.</p></div><div class="column"><h3>República social</h3><p><b>Morelos</b><br>Soberanía popular, Congreso y moderación de la desigualdad.</p></div><div class="column"><h3>Resistencia regional</h3><p><b>Guerrero, Victoria</b><br>Persistencia militar, redes territoriales y negociación.</p></div><div class="column"><h3>Pacto monárquico</h3><p><b>Iturbide</b><br>Independencia, religión y unión para conciliar intereses.</p></div></div><p class="critical reveal" style="--i:3"><b>Hallazgo:</b> el triunfo de 1821 logró soberanía externa, pero dejó abierta la disputa sobre forma de gobierno, ciudadanía, tierra, Iglesia y desigualdad.</p></div>
+    <footer class="footline"><span class="citation">Comparación propia a partir de fuentes INEHRM y UNAM citadas.</span><span>20</span></footer>
+  </section>
+
+  <section class="slide" data-section="ABP">
+    <header class="topline"><span class="section-name">Producto y socialización</span><span class="folio">ABP</span></header>
+    <div class="canvas split"><div><p class="kicker reveal" style="--i:0">Reto del equipo</p><h2 class="reveal" style="--i:1">Un juicio histórico, no un concurso de popularidad</h2><p class="lead reveal" style="--i:2">Moción: “La consumación de 1821 cumplió el proyecto social iniciado en 1810”.</p></div><div class="reveal" style="--i:2"><h3>Entregables</h3><ol class="compact"><li>Presentación multimedia con 14 perfiles.</li><li>Mapa de alianzas y conflictos.</li><li>Dos fuentes institucionales y una académica por equipo.</li><li>Debate: apertura, evidencia, refutación y cierre.</li><li>Reflexión individual de 250 palabras.</li></ol><p class="critical"><b>Regla:</b> cada afirmación debatible debe vincularse con una fuente; una conmemoración no sustituye una explicación.</p></div></div>
+    <footer class="footline"><span>Duración sugerida: 3 sesiones de investigación + 1 de debate</span><span>21</span></footer>
+  </section>
+
+  <section class="slide" data-section="Evaluación">
+    <header class="topline"><span class="section-name">Lista de cotejo</span><span class="folio">100 PUNTOS</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">Antes de entregar</p><h2 class="reveal" style="--i:1">Criterios transparentes</h2><div class="checklist reveal" style="--i:2"><div class="check"><b>30 pts · Investigación</b><p>Exactitud, variedad y confiabilidad de fuentes.</p></div><div class="check"><b>25 pts · Análisis</b><p>Contexto, intereses y contradicciones argumentadas.</p></div><div class="check"><b>20 pts · Estructura</b><p>Portada, índice, introducción, desarrollo, conclusión y referencias.</p></div><div class="check"><b>15 pts · Comunicación</b><p>Claridad, ortografía, coherencia y exposición oral.</p></div><div class="check"><b>10 pts · Diseño</b><p>Jerarquía visual, legibilidad y uso pertinente de multimedia.</p></div><div class="check"><b>Penalización</b><p>Fuentes ausentes, texto copiado, secciones incompletas o entrega manuscrita.</p></div></div></div>
+    <footer class="footline"><span>Formato digital: Word, Prezi, Canva, PowerPoint, Genially o HTML</span><span>22</span></footer>
+  </section>
+
+  <section class="slide" data-section="Conclusión">
+    <header class="topline"><span class="section-name">Conclusión</span><span class="folio">TESIS</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">Una respuesta posible</p><h2 class="reveal" style="--i:1">La nación nació de acuerdos incompletos</h2><div class="split reveal" style="--i:2"><p class="lead">La Independencia terminó el dominio colonial y abrió la soberanía política; no resolvió por sí sola las desigualdades, ni produjo consenso sobre quién debía gobernar.</p><div><p>Los catorce perfiles muestran que la transformación dependió de multitudes, redes clandestinas, recursos, prensa, ejércitos, congresos y pactos. Llamarlos “héroes” puede reconocer riesgos y aportes, siempre que no borre sus intereses, conflictos ni decisiones cuestionables.</p><p class="question">Comprender no es venerar ni condenar: es explicar con evidencia.</p></div></div></div>
+    <footer class="footline"><span>Conclusión del proyecto · abierta a refutación documentada</span><span>23</span></footer>
+  </section>
+
+  <section class="slide" data-section="Referencias">
+    <header class="topline"><span class="section-name">Referencias bibliográficas</span><span class="folio">APA 7 · 1/2</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">Fuentes institucionales y académicas</p><h2 class="reveal" style="--i:1">Referencias</h2><ul class="ref-list reveal" style="--i:2">
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (2018). <i>Independencia nacional: Catálogo de publicaciones</i>. <a href="https://www.inehrm.gob.mx/work/models/inehrm/Resource/4819/Catalogo_INEHRM.pdf" target="_blank" rel="noreferrer">https://www.inehrm.gob.mx/.../Catalogo_INEHRM.pdf</a></li>
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (2024). <i>De imperio a república, de provincias a estados: 200 años de República Federal</i>. <a href="https://www.inehrm.gob.mx/es/inehrm/De_imperio_a_republica" target="_blank" rel="noreferrer">https://www.inehrm.gob.mx/es/inehrm/De_imperio_a_republica</a></li>
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (2025). <i>Nicolás Bravo: El héroe del perdón</i>. <a href="https://inehrm.gob.mx/recursos/Libros/2025_nicolas_bravo_juventudes.pdf" target="_blank" rel="noreferrer">https://inehrm.gob.mx/recursos/Libros/2025_nicolas_bravo_juventudes.pdf</a></li>
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (s. f.). <i>Guadalupe Victoria</i>. <a href="https://inehrm.gob.mx/recursos/Libros/Guadalupe_Victoria.pdf" target="_blank" rel="noreferrer">https://inehrm.gob.mx/recursos/Libros/Guadalupe_Victoria.pdf</a></li>
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (s. f.). <i>Hidalgo constituyente</i>. <a href="https://inehrm.gob.mx/es/inehrm/Hidalgo_Constituyente" target="_blank" rel="noreferrer">https://inehrm.gob.mx/es/inehrm/Hidalgo_Constituyente</a></li>
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (s. f.). <i>Independencia</i>. <a href="https://www.inehrm.gob.mx/es/inehrm/Independencia" target="_blank" rel="noreferrer">https://www.inehrm.gob.mx/es/inehrm/Independencia</a></li>
+    </ul></div>
+    <footer class="footline"><span>Formato APA 7 · títulos en cursiva · URL directa</span><span>24</span></footer>
+  </section>
+
+  <section class="slide" data-section="Referencias">
+    <header class="topline"><span class="section-name">Referencias bibliográficas</span><span class="folio">APA 7 · 2/2</span></header>
+    <div class="canvas"><p class="kicker reveal" style="--i:0">Fuentes institucionales y académicas</p><h2 class="reveal" style="--i:1">Referencias</h2><ul class="ref-list reveal" style="--i:2">
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (s. f.). <i>José María Morelos y Pavón: Cronología, 1765–1815</i>. <a href="https://inehrm.gob.mx/es/inehrm/jose_maria_morelos_y_pavon_cronologia_1765-1815" target="_blank" rel="noreferrer">https://inehrm.gob.mx/es/inehrm/jose_maria_morelos_y_pavon_cronologia_1765-1815</a></li>
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (s. f.). <i>Próceres de México: José María Morelos y Pavón</i>. <a href="https://www.inehrm.gob.mx/sitios/proceres/index.php?p=morelos" target="_blank" rel="noreferrer">https://www.inehrm.gob.mx/sitios/proceres/index.php?p=morelos</a></li>
+      <li>Instituto Nacional de Estudios Históricos de las Revoluciones de México. (s. f.). <i>Próceres de México: Vicente Guerrero Saldaña</i>. <a href="https://www.inehrm.gob.mx/sitios/proceres/index.php?p=vicente" target="_blank" rel="noreferrer">https://www.inehrm.gob.mx/sitios/proceres/index.php?p=vicente</a></li>
+      <li>Portal Académico del Colegio de Ciencias y Humanidades, Universidad Nacional Autónoma de México. (s. f.). <i>Independencia de México: Segunda etapa</i>. <a href="https://e1.portalacademico.cch.unam.mx/alumno/historiademexico1/unidad4/independenciaMexico/segundaEtapa" target="_blank" rel="noreferrer">https://e1.portalacademico.cch.unam.mx/.../segundaEtapa</a></li>
+      <li>Secretaría de Cultura, Instituto Nacional de Estudios Históricos de las Revoluciones de México. (s. f.). <i>Documentos de la historia constitucional de México: Independencia</i>. <a href="https://constitucion1917.gob.mx/es/Constitucion1917/Independencia" target="_blank" rel="noreferrer">https://constitucion1917.gob.mx/es/Constitucion1917/Independencia</a></li>
+      <li>Valero Silva, J. (1965). Las ideas políticas de Morelos. <i>Estudios de Historia Moderna y Contemporánea de México, 1</i>. <a href="https://moderna.historicas.unam.mx/index.php/ehm/article/view/69024" target="_blank" rel="noreferrer">https://moderna.historicas.unam.mx/index.php/ehm/article/view/69024</a></li>
+    </ul></div>
+    <footer class="footline"><span>Consulta web verificada el 20 de septiembre de 2026</span><span>25</span></footer>
+  </section>
+</main>
+
+<nav class="controls" aria-label="Controles de presentación">
+  <button id="prev" type="button" aria-label="Diapositiva anterior">←</button><span class="count" id="count">01 / 25</span><button id="next" type="button" aria-label="Diapositiva siguiente">→</button><button id="full" type="button" aria-label="Pantalla completa">⛶</button>
+</nav>
+<div class="help">← → navegar · F pantalla completa · Inicio/Fin</div>
+
+<script>
+  let slides=[...document.querySelectorAll('.slide')];
+  const profileSlides=slides.filter(s=>s.dataset.person);
+  const details={
+    'Miguel Hidalgo y Costilla':[
+      ['Formación','Estudió en el Colegio de San Nicolás y llegó a ser rector. Dominaba lenguas indígenas y promovió talleres productivos entre sus feligreses de Dolores.'],
+      ['Participación','Después del Grito encabezó un movimiento que creció con enorme rapidez. Tomó Guanajuato y Valladolid, venció en Monte de las Cruces y gobernó desde Guadalajara.'],
+      ['Programa social','Sus decretos suprimieron esclavitud, tributo indígena y diversas cargas coloniales; además, ordenó devolver tierras comunales a los pueblos originarios.'],
+      ['Derrota y memoria','Puente de Calderón debilitó al movimiento. Fue capturado, degradado eclesiásticamente y fusilado en 1811. Su imagen pública se construyó sobre todo después de su muerte.']],
+    'José María Morelos y Pavón':[
+      ['Formación','Trabajó como arriero antes de estudiar en San Nicolás y ordenarse sacerdote. Esa experiencia le dio conocimiento de rutas, economías y comunidades del sur.'],
+      ['Campañas','Hidalgo le encargó levantar el sur y tomar Acapulco. Resistió Cuautla y ocupó Oaxaca, apoyado por Matamoros, Galeana, Guerrero y los Bravo.'],
+      ['Proyecto político','Sentimientos de la Nación propuso independencia absoluta, soberanía popular, división de poderes, fin de castas y reducción de la desigualdad.'],
+      ['Instituciones','Impulsó el Congreso de Anáhuac y la Constitución de Apatzingán. Fue capturado mientras protegía al Congreso y fusilado en 1815.']],
+    'Ignacio Allende':[
+      ['Trayectoria','Criollo acomodado y capitán de Dragones de la Reina. Su experiencia militar lo volvió una pieza central de las conspiraciones de Valladolid y Querétaro.'],
+      ['Plan inicial','Los conspiradores imaginaban un levantamiento coordinado con tropas y juntas. El descubrimiento del complot obligó a adelantarlo y alteró el plan.'],
+      ['Conflicto de mando','Discutió con Hidalgo por la violencia, la disciplina y la retirada de la capital. Después de Puente de Calderón, Hidalgo perdió el mando efectivo.'],
+      ['Final','Fue capturado en Acatita de Baján y fusilado en Chihuahua. Su cabeza fue exhibida con las de Hidalgo, Aldama y Jiménez en la Alhóndiga.']],
+    'Juan Aldama':[
+      ['Origen y carrera','Nació en San Miguel el Grande y fue capitán de Dragones de la Reina. Sus vínculos militares facilitaron contactos entre conspiradores.'],
+      ['Septiembre de 1810','Al conocer que la conspiración había sido descubierta, viajó a Dolores y participó en la decisión de iniciar el levantamiento sin esperar.'],
+      ['Campaña','Acompañó al ejército en Celaya, Guanajuato, Valladolid y Monte de las Cruces. Compartió el interés de Allende por organizar militarmente a la multitud.'],
+      ['Memoria','Fue capturado y ejecutado con los primeros jefes. Su caso visibiliza a los enlaces y organizadores que suelen quedar bajo la sombra de los caudillos.']],
+    'Josefa Ortiz Téllez-Girón':[
+      ['Formación y posición','Estudió en el Colegio de las Vizcaínas y se casó con el corregidor Miguel Domínguez. Su casa se convirtió en espacio de reunión política.'],
+      ['Acción decisiva','Encerrada cuando el complot fue descubierto, consiguió avisar a los conspiradores mediante Ignacio Pérez. El mensaje aceleró el inicio de la rebelión.'],
+      ['Represión','Fue vigilada y recluida por las autoridades virreinales. Aun así mantuvo contactos con insurgentes y rechazó recompensas oficiales posteriores.'],
+      ['Lectura crítica','No fue sólo mensajera ni acompañante: tomó decisiones políticas. Su caso muestra cómo una mujer podía usar redes domésticas para intervenir en lo público.']],
+    'Leona Vicario':[
+      ['Recursos y educación','Huérfana y heredera, recibió una educación poco común para una mujer de su época. Usó parte de su fortuna para sostener redes insurgentes.'],
+      ['Los Guadalupes','Transmitió información sobre movimientos realistas, financió armas y ayudó a reclutar personas. La red conectó la capital con mandos insurgentes.'],
+      ['Prensa y persecución','Colaboró con publicaciones insurgentes, fue detenida en el Colegio de Belén y sufrió confiscación de bienes antes de escapar.'],
+      ['Voz propia','En 1831 respondió públicamente a Lucas Alamán y afirmó que actuó por convicción, no por influencia amorosa. Es un texto clave sobre agencia femenina.']],
+    'Mariano Matamoros':[
+      ['Del púlpito al ejército','Sacerdote en Jantetelco, fue perseguido por simpatizar con la insurgencia y se incorporó a Morelos a finales de 1811.'],
+      ['Capacidad militar','Organizó regimientos, impuso disciplina y destacó en Cuautla, Oaxaca y Tonalá. Morelos lo consideró su segundo al mando.'],
+      ['Captura','Tras la derrota insurgente de Puruarán fue capturado. Morelos ofreció intercambiar prisioneros, pero las autoridades rechazaron la propuesta.'],
+      ['Significado','Su trayectoria muestra cómo miembros del clero local aportaron legitimidad, organización y conocimiento comunitario a la guerra.']],
+    'Hermenegildo Galeana':[
+      ['Red familiar','Pertenecía a una familia de propietarios de Tecpan. Los Galeana aportaron hombres, caballos, armas y relaciones locales a la campaña de Morelos.'],
+      ['Jefe de combate','Sin formación militar académica, destacó por conocimiento del terreno y capacidad táctica en Cuautla, Oaxaca, Acapulco y otras acciones del sur.'],
+      ['Liderazgo regional','Su autoridad dependía de parentesco, prestigio y recursos. Esto explica cómo los ejércitos insurgentes se apoyaban en poderes locales preexistentes.'],
+      ['Muerte y efecto','Murió en combate en Coyuca en 1814. Su pérdida, junto con la captura de Matamoros, debilitó profundamente la estructura militar de Morelos.']],
+    'Nicolás Bravo':[
+      ['Familia insurgente','La familia Bravo, propietaria de Chichihualco, se unió a Morelos y convirtió sus recursos y redes regionales en apoyo para la causa.'],
+      ['El perdón','La tradición sostiene que liberó a cientos de prisioneros realistas aun después de la ejecución de su padre. El episodio construyó su imagen cívica.'],
+      ['Después de 1821','Integró el Poder Ejecutivo, fue vicepresidente de Guadalupe Victoria y ocupó varias veces la presidencia en un país marcado por pronunciamientos.'],
+      ['Contradicción política','En 1827 encabezó una rebelión contra el gobierno del que era vicepresidente. Su carrera ilustra la inestabilidad de los primeros años nacionales.']],
+    'Guadalupe Victoria':[
+      ['Identidad política','Nació como José Miguel Fernández Félix. El nombre Guadalupe Victoria combinaba el símbolo religioso insurgente con una declaración de triunfo.'],
+      ['Resistencia','Combatió con Morelos y mantuvo focos guerrilleros en Veracruz. Pasó periodos oculto cuando la insurgencia estuvo cerca de desaparecer.'],
+      ['Construcción republicana','Se opuso al Imperio de Iturbide, participó en el Poder Ejecutivo provisional y fue elegido primer presidente constitucional en 1824.'],
+      ['Gobierno','Durante su mandato se consolidó la federación y se obtuvieron reconocimientos exteriores, aunque persistieron deuda, facciones y debilidad fiscal.']],
+    'Francisco Xavier Mina':[
+      ['Liberal transatlántico','Combatió en España contra Napoleón y después contra el absolutismo de Fernando VII. El exilio lo conectó con liberales británicos y americanos.'],
+      ['Expedición de 1817','Desembarcó en Soto la Marina con voluntarios y una imprenta. Se alió con Pedro Moreno y reanimó temporalmente una insurgencia debilitada.'],
+      ['Ideas','Afirmó que no luchaba contra los españoles, sino contra la tiranía. Su discurso vinculó la independencia americana con el constitucionalismo liberal.'],
+      ['Derrota','Fue capturado cerca del fuerte de Los Remedios y fusilado. Su campaña fue breve, pero evidencia que la guerra formó parte de una crisis atlántica.']],
+    'Vicente Guerrero':[
+      ['Base social','De origen sureño y ligado a oficios de arriería, conocía rutas y comunidades de la sierra. Ascendió por capacidad militar dentro de las fuerzas de Morelos.'],
+      ['Resistencia','Tras la muerte de Morelos mantuvo guerrillas en el sur mediante movilidad, redes locales y conocimiento territorial, pese a campañas realistas y amnistías.'],
+      ['Negociación de 1821','La incapacidad de Iturbide para derrotarlo favoreció el pacto. El Plan de Iguala unió independencia, religión católica y unión bajo una monarquía.'],
+      ['Presidencia y muerte','Presidente en 1829, decretó la abolición de la esclavitud. Fue derrocado, capturado mediante engaño y ejecutado en 1831.']],
+    'Agustín de Iturbide':[
+      ['Carrera realista','Oficial criollo del ejército virreinal, combatió con dureza a insurgentes en el Bajío. También enfrentó acusaciones de abusos y negocios durante el mando.'],
+      ['Giro de 1821','La revolución liberal española alteró los intereses de élites novohispanas. Iturbide negoció con Guerrero y formuló el Plan de Iguala.'],
+      ['Tres Garantías','Independencia, religión católica y unión permitieron sumar antiguos realistas, insurgentes, clero, corporaciones y provincias al Ejército Trigarante.'],
+      ['Imperio y caída','Coronado en 1822, chocó con el Congreso y lo disolvió. El Plan de Casa Mata provocó su abdicación; regresó del exilio y fue fusilado en 1824.']],
+    'Ignacio López Rayón':[
+      ['Formación','Abogado originario de Tlalpujahua, administró recursos de Hidalgo y asumió tareas de reorganización después de la derrota de la primera dirigencia.'],
+      ['Junta de Zitácuaro','Creó en 1811 una autoridad insurgente que buscó coordinar mandos, recaudar recursos, emitir moneda y dar legitimidad al movimiento.'],
+      ['Elementos constitucionales','El texto defendió soberanía popular, derechos y división de poderes, pero conservó simbólicamente a Fernando VII como depositario de la corona.'],
+      ['Conflictos internos','Tuvo diferencias con Morelos y otros jefes sobre autoridad y estrategia. Estas disputas muestran que institucionalizar la insurgencia fue un proceso conflictivo.']]
+  };
+  const significance={
+    'Miguel Hidalgo y Costilla':'Su importancia no se limita a iniciar la guerra: convirtió una crisis de élites en movilización social. La pregunta clave es si sus decretos expresaron un programa estable o respuestas radicales a una guerra que cambiaba rápidamente.',
+    'José María Morelos y Pavón':'Transformó una rebelión armada en un proyecto de Estado. Comparar Sentimientos de la Nación con la Constitución de Apatzingán permite observar la distancia entre ideales sociales, diseño jurídico y condiciones reales de guerra.',
+    'Ignacio Allende':'Su choque con Hidalgo revela que la insurgencia estuvo dividida desde el principio entre conducción militar disciplinada y movilización popular. No era una diferencia personal menor, sino una disputa sobre qué revolución construir.',
+    'Juan Aldama':'Su papel demuestra que las revoluciones dependen de mensajeros, contactos, rutas y confianza. Analizarlo corrige una historia centrada sólo en quienes pronunciaron discursos o ejercieron el mando supremo.',
+    'Josefa Ortiz Téllez-Girón':'Permite estudiar cómo lo doméstico se convirtió en espacio político. Su actuación desafía la separación tradicional entre hombres públicos y mujeres privadas, aunque también estuvo posibilitada por una posición social privilegiada.',
+    'Leona Vicario':'Su trayectoria une dinero, información y opinión pública. Muestra que una guerra se sostiene tanto con redes financieras y comunicación como con batallas, y que las mujeres reclamaron autoría política sobre sus propias decisiones.',
+    'Mariano Matamoros':'Su capacidad organizativa ayuda a explicar por qué el ejército de Morelos fue más disciplinado que la primera insurgencia. También plantea la tensión entre ministerio religioso, violencia política y obediencia militar.',
+    'Hermenegildo Galeana':'Hace visible el peso de los poderes regionales. El movimiento necesitó propietarios, parentescos y lealtades locales; por eso no puede explicarse únicamente como enfrentamiento simple entre élites y pueblo.',
+    'Nicolás Bravo':'La imagen del perdón debe contrastarse con su conflictiva carrera republicana. El héroe moral de 1812 se convirtió después en dirigente de facciones, recordándonos que la Independencia no eliminó la lucha por el poder.',
+    'Guadalupe Victoria':'Su paso de guerrillero a presidente conecta insurgencia y construcción institucional. Su gobierno demuestra que ganar soberanía era distinto de recaudar impuestos, obtener crédito y mantener unido un territorio federal.',
+    'Francisco Xavier Mina':'Rompe la explicación nacionalista de mexicanos contra españoles. Su lucha fue liberal y antiabsolutista; sitúa la Independencia dentro de una revolución política atlántica que cruzó fronteras.',
+    'Vicente Guerrero':'Representa la continuidad entre resistencia popular, negociación y república. El pacto de 1821 muestra que conservar el objetivo de independencia exigió aceptar temporalmente un proyecto monárquico y socialmente moderado.',
+    'Agustín de Iturbide':'Obliga a distinguir consumación, revolución social y forma de gobierno. Su coalición hizo viable la separación de España, pero protegió intereses corporativos y desembocó en un Imperio enfrentado al Congreso.',
+    'Ignacio López Rayón':'Permite observar el tránsito entre fidelidad simbólica a Fernando VII e independencia absoluta. Sus ambigüedades no son simple indecisión: reflejan la búsqueda de legitimidad en medio del derrumbe monárquico.'
+  };
+  profileSlides.forEach((s,idx)=>{
+    const tags=s.dataset.tags.split('|').map(t=>`<span class="tag">${t}</span>`).join('');
+    const rawFacts=s.dataset.facts.split('|'),factPairs=[];
+    for(let i=0;i<rawFacts.length;i+=2)factPairs.push(`<div class="microfact"><b>${rawFacts[i]}</b>${rawFacts[i+1]}</div>`);
+    const ps=[...s.querySelectorAll('.profile-data p')];
+    s.innerHTML=`<header class="topline"><span class="section-name">Expediente ${String(idx+1).padStart(2,'0')} / 14</span><span class="folio">${s.dataset.years}</span></header>
+      <div class="canvas profile-grid"><div class="portrait reveal" style="--i:0"><span>${s.dataset.initials}</span><img src="${s.dataset.img}" alt="Retrato histórico de ${s.dataset.person}" loading="lazy" onerror="this.remove()"><small><a href="${s.dataset.imgpage}" target="_blank" rel="noreferrer">${s.dataset.credit}</a></small></div><div><p class="kicker reveal" style="--i:0">${s.dataset.role}</p><h2 class="reveal" style="--i:1">${s.dataset.person}</h2><div class="tags reveal" style="--i:2">${tags}</div><div class="microfacts reveal" style="--i:2">${factPairs.join('')}</div><p class="reveal" style="--i:2">${ps[0].innerHTML}</p><p class="critical reveal" style="--i:3">${ps[1].innerHTML}</p></div></div>
+      <footer class="footline"><span class="citation">Fuente: <a href="${s.dataset.url}" target="_blank" rel="noreferrer">${s.dataset.source}</a></span><span>${String(slides.indexOf(s)+1).padStart(2,'0')}</span></footer>`;
+    const detail=document.createElement('section');
+    detail.className='slide';detail.dataset.section='Expediente ampliado';
+    const cards=details[s.dataset.person].map((d,i)=>`<article class="detail-card reveal" style="--i:${i+1}"><h3>${d[0]}</h3><p>${d[1]}</p></article>`).join('');
+    detail.innerHTML=`<header class="topline"><span class="section-name">${s.dataset.person} · análisis ampliado</span><span class="folio">${s.dataset.years}</span></header><div class="canvas detail-layout"><div><p class="kicker reveal" style="--i:0">Vida, acción e ideas</p><h2 class="reveal" style="--i:1">Más allá del retrato</h2><div class="detail-grid">${cards}</div><div class="detail-note reveal" style="--i:5"><b>¿Por qué importa?</b> ${significance[s.dataset.person]}</div></div><div class="detail-photo reveal" style="--i:2"><img src="${s.dataset.img}" alt="Retrato histórico de ${s.dataset.person}" loading="lazy" onerror="this.style.display='none'"><small class="image-credit"><a href="${s.dataset.imgpage}" target="_blank" rel="noreferrer">${s.dataset.credit}</a></small></div></div><footer class="footline"><span class="citation">Fuente de ampliación: <a href="${s.dataset.url}" target="_blank" rel="noreferrer">${s.dataset.source}</a></span><span>00</span></footer>`;
+    s.after(detail);
+  });
+  slides=[...document.querySelectorAll('.slide')];
+  slides.forEach((s,i)=>{const n=s.querySelector('.footline > span:last-child');if(n&&/^\d+$/.test(n.textContent.trim()))n.textContent=String(i+1).padStart(2,'0')});
+  let current=0,busy=false,startX=0;
+  const count=document.getElementById('count'),progress=document.getElementById('progress');
+  function show(next){
+    if(busy||next===current||next<0||next>=slides.length)return;
+    busy=true;const old=slides[current];old.classList.remove('active');old.classList.add('leaving');
+    current=next;slides[current].classList.add('active');update();
+    setTimeout(()=>{old.classList.remove('leaving');busy=false},820);
+  }
+  function update(){count.textContent=`${String(current+1).padStart(2,'0')} / ${slides.length}`;progress.style.width=`${((current+1)/slides.length)*100}%`;document.title=`${slides[current].dataset.section} | Entre la insurgencia y la nación`}
+  document.getElementById('prev').addEventListener('click',()=>show(current-1));
+  document.getElementById('next').addEventListener('click',()=>show(current+1));
+  document.getElementById('full').addEventListener('click',()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen());
+  addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(current+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(current-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);if(e.key.toLowerCase()==='f')document.getElementById('full').click()});
+  addEventListener('touchstart',e=>startX=e.changedTouches[0].screenX,{passive:true});
+  addEventListener('touchend',e=>{const d=e.changedTouches[0].screenX-startX;if(Math.abs(d)>55)show(current+(d<0?1:-1))},{passive:true});
+  update();
+</script>
+</body>
+</html>
